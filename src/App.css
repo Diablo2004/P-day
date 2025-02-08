@@ -1,0 +1,127 @@
+/* 🌸 General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* 💖 Main Container */
+.container {
+  position: relative;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* 💌 Romantic Heading */
+h1 {
+  font-size: 2.5rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 3px 3px 6px rgba(255, 0, 102, 0.5);
+  margin-bottom: 15px;
+  animation: heartbeat 2s infinite;
+}
+
+/* ❤️ Yes Button */
+.yes-button {
+  background: #ff4d4d;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.6);
+  transition: transform 0.2s ease, background 0.3s, box-shadow 0.3s;
+}
+
+.yes-button:hover {
+  transform: scale(1.2);
+  background: #ff1a1a;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+}
+
+/* 😈 No Button */
+.no-button {
+  background: #4d4dff;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s;
+  position: absolute;
+  box-shadow: 0 0 15px rgba(77, 77, 255, 0.6);
+}
+
+.no-button:hover {
+  transform: scale(1.2);
+  background: #0000e6;
+  box-shadow: 0 0 20px rgba(0, 0, 255, 0.8);
+}
+
+/* 🏃‍♂️ No Button Running Away */
+.no-button.running {
+  transition: left 0.3s ease, top 0.3s ease;
+}
+
+/* 💘 Animated GIF */
+.gif {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in;
+}
+
+/* 🌟 Yes Message */
+#yesMessage {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff1744;
+  text-shadow: 2px 2px 6px rgba(255, 0, 0, 0.5);
+  margin-top: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* 🎀 Cute Floating Hearts */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+}
+
+/* Floating hearts effect */
+.heart {
+  position: absolute;
+  color: red;
+  font-size: 30px;
+  opacity: 0.7;
+  animation: floatHearts 2s linear infinite;
+}
