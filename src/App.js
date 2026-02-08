@@ -22,6 +22,7 @@ function App() {
   const [noPosition, setNoPosition] = useState({ top: "50%", left: "50%" });
   const [yesButtons, setYesButtons] = useState(1);
   const [gif, setGif] = useState("");
+  const [noMoved, setNoMoved] = useState(false);
 
   useEffect(() => {
     setGif(gifs[Math.floor(Math.random() * gifs.length)]);
@@ -32,66 +33,90 @@ function App() {
   };
 
   const handleNoClick = () => {
+    setNoMoved(true);
+
     const randomAction = Math.random();
 
     if (randomAction < 0.33) {
-      // 🏃 No Button Runs Away
       const newX = Math.random() * 80 + "%";
       const newY = Math.random() * 80 + "%";
       setNoPosition({ top: newY, left: newX });
     } else if (randomAction < 0.66) {
-      // ➕ Add More "Yes" Buttons
       setYesButtons((prev) => prev + 1);
     } else {
-      // 😈 Change No Text
       setNoIndex((prev) => (prev + 1) % noResponses.length);
     }
   };
 
   return (
-    <div className='container'>
-      {!yesClicked ? (
-        <>
-          <h1>For Rimi</h1>
-          <h1>Hey cutu baby love, Will you be my Valentine? 💖</h1>
-          <h1>I promise to keep you the happiest person ever! 😍</h1>
-
-          {/* Yes Buttons */}
-          <div className='yes-buttons'>
-            {Array.from({ length: yesButtons }).map((_, index) => (
-              <button
-                key={index}
-                className='yes-button'
-                onClick={handleYesClick}
-              >
-                Yes
-              </button>
-            ))}
-          </div>
-
-          {/* No Button */}
-          <button
-            className='no-button'
+    <>
+      {/* 💖 Animated Background */}
+      <div className='animated-bg'>
+        {Array.from({ length: 20 }).map((_, i) => (
+          <span
+            key={i}
+            className='heart'
             style={{
-              top: noPosition.top,
-              left: noPosition.left,
-              position: "absolute",
+              left: Math.random() * 100 + "%",
+              animationDelay: Math.random() * 5 + "s",
+              fontSize: Math.random() * 20 + 15 + "px",
             }}
-            onClick={handleNoClick}
           >
-            {noResponses[noIndex]}
-          </button>
-        </>
-      ) : (
-        <>
-          <h1 id='yesMessage'>
-            Yay! I knew it! You have made me the happiest person in this world!
             ❤️
-          </h1>
-          <img src={gif} alt='Happy GIF' className='gif' />
-        </>
-      )}
-    </div>
+          </span>
+        ))}
+      </div>
+
+      {/* Main Content */}
+      <div className='container'>
+        {!yesClicked ? (
+          <>
+            <h1>For Saumya</h1>
+            <h1>Hey cute baby, Will you be my Valentine? 💖</h1>
+            <h1>I promise to keep you the happiest person ever! 😍</h1>
+
+            {/* Buttons */}
+            <div className='buttons-row'>
+              {Array.from({ length: yesButtons }).map((_, index) => (
+                <button
+                  key={index}
+                  className='yes-button'
+                  onClick={handleYesClick}
+                >
+                  Yes
+                </button>
+              ))}
+
+              <button
+                className='no-button'
+                style={
+                  noMoved
+                    ? {
+                        position: "absolute",
+                        top: noPosition.top,
+                        left: noPosition.left,
+                      }
+                    : { position: "relative" }
+                }
+                onClick={handleNoClick}
+              >
+                {noResponses[noIndex]}
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h1 id='yesMessage'>Yay! I knew it! ❤️</h1>
+            <h2 style={{ fontWeight: "400", opacity: 0.9 }}>
+              I owe you a birthday wish and a big sorry… let me make up for it
+              ❤️🎂
+            </h2>
+
+            <img src={gif} alt='Happy GIF' className='gif' />
+          </>
+        )}
+      </div>
+    </>
   );
 }
 
